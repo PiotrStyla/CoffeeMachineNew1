@@ -13,16 +13,16 @@ public class CoffeeMachine {
     public static void main(String[] args) {
 
         printState();
-        while(scanner.hasNextLine()){
-
-            useMachine();
-            printState();
-        }
+        run();
+//        while(scanner.hasNextLine()){
+//            useMachine();
+//            printState();
+//        }
 //        if(true){
 //            useMachine();
 //            printState();
 //        }
-//        else {
+//        else if(scanner.hasNextLine()) {
 //            scanner.hasNextLine();
 //            useMachine();
 //            printState();
@@ -43,7 +43,7 @@ public class CoffeeMachine {
                 takeMoney();
                 break;
             default:
-                System.out.println("");
+                System.out.println();
         }
     }
 
@@ -122,14 +122,22 @@ public class CoffeeMachine {
     }
 
     public static boolean verify(){
-        int waterLevel = water;       //350
-        int milkLevel = milk;   //100
-        int coffeeBeansLevel = coffeeBeans;  //20
-        int dispCupsLevel = dispCups - 1;
+        int waterLevel = water;       //-350
+        int milkLevel = milk;   //-100
+        int coffeeBeansLevel = coffeeBeans;  //-20
+        int dispCupsLevel = dispCups;  // - 1;
         boolean resources =(waterLevel<0)||(milkLevel<0)||(coffeeBeansLevel<0)||(dispCupsLevel<0);
         if(((waterLevel<0)||(milkLevel<0)||(coffeeBeansLevel<0)||(dispCupsLevel<0))){
             System.out.println("Machine out of service");
         }return resources;
+    }
+
+    public static void run() {
+        if(scanner.hasNextLine()) {
+            useMachine();
+            printState();
+            run();
+        }
     }
 
 }
